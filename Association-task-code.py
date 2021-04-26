@@ -10,46 +10,81 @@ NicolasBeauvais
 
 #libraries
 import random
-from expyriment import design, control, stimuli
+from expyriment import design, control, stimuli, misc 
 
-MAX_RESPONSE_DELAY = 2000
+RESPONSE_key1 = misc.constants.K_s
+RESPONSE_key2 = misc.constants.K_k 
+BUZZER = 'wrong-answer.ogg'
+
+MAX_RESPONSE_DELAY = 3000
 TARGETS = ["Coronavirus", "Flue", "Shortness of breath",
-           "Harmful", "Danger", "Disease",
+           "Harmful", "Danger", "Risky",
            "Sun", "Window", "Ice",
            "Peaceful", "Safe", "Harmless"]
 random.shuffle(TARGETS)
 
-RESPONSE_key1 = 's'
-RESPONSE_key2 = 'l'
+dict_words1 = {"Coronavirus": RESPONSE_key1, "Flue":RESPONSE_key1, "Shortness of breath": RESPONSE_key1,
+           "Harmful":RESPONSE_key1, "Danger":RESPONSE_key1, "Risky":RESPONSE_key1,
+           "Sun":RESPONSE_key2, "Window":RESPONSE_key2, "Ice":RESPONSE_key2,
+           "Peaceful":RESPONSE_key2, "Safe":RESPONSE_key2, "Harmless":RESPONSE_key2}
 
-exp = design.Experiment(name="Implicit Association Task", text_size=20)
+dict_words2 = {"Coronavirus": RESPONSE_key2, "Flue":RESPONSE_key2, "Shortness of breath": RESPONSE_key2,
+           "Harmful":RESPONSE_key1, "Danger":RESPONSE_key1, "Risky":RESPONSE_key1,
+           "Sun":RESPONSE_key1 ,"Window":RESPONSE_key1, "Ice":RESPONSE_key1,
+           "Peaceful":RESPONSE_key2, "Safe":RESPONSE_key2, "Harmless":RESPONSE_key2}
+
+
+exp = design.Experiment(name="Implicit Association Task", text_size=30)
+
 control.initialize(exp)
 
 cue = stimuli.FixCross(size=(50, 50), line_width=4)
 blankscreen = stimuli.BlankScreen()
-instructions = stimuli.TextScreen("INSTRUCTIONS",
-    f"""When you'll see a word, your task is to decide, 
-    as quickly as possible,
-    to which category it belongs.
-    if it is related to COVID-19 (Coronavirus, Flue, Shortness of breath)
-    or to Harm (Harmful, Danger, Disease), press '{RESPONSE_key1}'
-    if it is related to Other categories (Sun, Window, Ice,)
-    or to Harmless (Harmless, Peaceful, Safe), press '{RESPONSE_key2}'
+instructions1 = stimuli.TextScreen("INSTRUCTIONS",
+    f"""When you'll see a word, your task is to decide, as quickly as possible,
+    to which category it belongs. There will be two blocks.
+    
+    BLOCK 1:
+    If it is related to COVID-19 (Coronavirus, Flue, Shortness of breath)
+    or to HARM (Harmful, Danger, Risky), press '{chr(RESPONSE_key1)}'
+    
+    If it is related to OTHER CATEGORIES (Sun, Window, Ice,)
+    or to SAFETY (Harmless, Peaceful, Safe), press '{chr(RESPONSE_key2)}'
 
     There will be {len(TARGETS)} trials in total.
-    Press the space bar to start.""", position=None, heading_font= None,
+    A Buzzer sound will be displayed if you answer wrong, 
+    make sure your volume isn't too high.
+    Press the space bar to start.""", position= None, heading_font = None,
     heading_size=40, heading_bold=True, text_justification=1)
 
+instructions2 = stimuli.TextScreen("INSTRUCTIONS",
+    f"""When you'll see a word, your task is to decide, as quickly as possible,
+    to which category it belongs. 
+    THE ASSOCIATED CATEGORIES ARE NOW DIFFERENT:
+    
+    BLOCK 2:
+    If the word is related to OTHER CATEGORIES (Sun, Window, Ice,) 
+    or to HARM (Harmful, Danger, Risky), press '{chr(RESPONSE_key1)}'
+    
+    If it is related to COVID-19 (Coronavirus, Flue, Shortness of breath)
+    or to SAFETY (Harmless, Peaceful, Safe), press '{chr(RESPONSE_key2)}'
+
+    There will be {len(TARGETS)} trials in total.
+    Press the space bar to start.""", position= None, heading_font = None,
+    heading_size=40, heading_bold=True, text_justification=1)
+    
 # prepare the stimuli
 trials = []
 for word in TARGETS:
     trials.append((word, stimuli.TextLine(str(word))))
 
 
-exp.add_data_variable_names(['number', 'respkey', 'RT'])
+exp.add_data_variable_names(['word', 'respkey', 'RT', 'correct association'])
 
+# Start the experiment
 control.start(skip_ready_screen=True)
-instructions.present()
+# Block 1
+instructions1.present()
 exp.keyboard.wait()
 
 for t in trials:
@@ -58,20 +93,35 @@ for t in trials:
     cue.present()
     exp.clock.wait(500)
     t[1].present()
-    key, rt = exp.keyboard.wait(duration=MAX_RESPONSE_DELAY)
-    exp.data.add([t[0],  key, rt])
+    key, rt = exp.keyboard.wait([RESPONSE_key1, RESPONSE_key2],duration=MAX_RESPONSE_DELAY)
+    is_correct = dict_words1[t[0]] == key
+    if dict_words1[t[0]] != key:
+        negative_feedback = stimuli.Audio(BUZZER)
+        negative_feedback.play()
+        print('Wrong answer')
+    exp.data.add([t[0],  key, rt, is_correct])
 
+# Block 2
+print('Block 2:')
+exp.data.add('Block2')
+instructions2.present() 
+exp.keyboard.wait()
+
+for t in trials:
+    blankscreen.present()
+    exp.clock.wait(1000)
+    cue.present()
+    exp.clock.wait(500)
+    t[1].present()
+    key, rt = exp.keyboard.wait([RESPONSE_key1, RESPONSE_key2], duration=MAX_RESPONSE_DELAY)
+    is_correct2 = dict_words2[t[0]] == key
+    if dict_words2[t[0]] != key:
+        negative_feedback = stimuli.Audio(BUZZER)
+        negative_feedback.play()
+        print('Wrong answer')
+    exp.data.add([t[0], key, rt, is_correct2])
+    
 control.end()
 
 
-### When you'll see a word, your task is to decide, as quickly as possible,
-   # to which category it belongs.
-
-   # if it is related to COVID-19 (Coronavirus, Flue, Shortness of breath)
-   # or to Harm (Harmful, Danger, Disease), press '{RESPONSE_1}'
-
-    #if it is related to Other categories (Sun, Window, Ice,)
-    #or to Harmless (Harmless, Peaceful, Safe), press '{RESPONSE_2}'
-
- #   There will be {len(TARGETS)} trials in total.
-#    Press the space bar to start.
+### END ###
