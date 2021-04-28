@@ -8,7 +8,7 @@ Project PCBS NBeauvais - Implicit Association Task
 NicolasBeauvais
 """
 
-#libraries
+# Libraries
 import random
 from expyriment import design, control, stimuli, misc 
 
@@ -34,7 +34,7 @@ dict_words2 = {"Coronavirus": RESPONSE_key2, "Flue":RESPONSE_key2, "Shortness of
            "Peaceful":RESPONSE_key2, "Safe":RESPONSE_key2, "Harmless":RESPONSE_key2}
 
 
-exp = design.Experiment(name="Implicit Association Task", text_size=30)
+exp = design.Experiment(name="Implicit Association Task", text_size=20)
 
 control.initialize(exp)
 
@@ -51,7 +51,7 @@ instructions1 = stimuli.TextScreen("INSTRUCTIONS",
     If it is related to OTHER CATEGORIES (Sun, Window, Ice,)
     or to SAFETY (Harmless, Peaceful, Safe), press '{chr(RESPONSE_key2)}'
 
-    There will be {len(TARGETS)} trials in total.
+    There will be {len(TARGETS)} trials in each block.
     A Buzzer sound will be displayed if you answer wrong, 
     make sure your volume isn't too high.
     Press the space bar to start.""", position= None, heading_font = None,
@@ -69,11 +69,11 @@ instructions2 = stimuli.TextScreen("INSTRUCTIONS",
     If it is related to COVID-19 (Coronavirus, Flue, Shortness of breath)
     or to SAFETY (Harmless, Peaceful, Safe), press '{chr(RESPONSE_key2)}'
 
-    There will be {len(TARGETS)} trials in total.
+    There will be {len(TARGETS)} trials in the block.
     Press the space bar to start.""", position= None, heading_font = None,
     heading_size=40, heading_bold=True, text_justification=1)
     
-# prepare the stimuli
+# Prepare the stimuli
 trials = []
 for word in TARGETS:
     trials.append((word, stimuli.TextLine(str(word))))
@@ -83,6 +83,7 @@ exp.add_data_variable_names(['word', 'respkey', 'RT', 'correct association'])
 
 # Start the experiment
 control.start(skip_ready_screen=True)
+
 # Block 1
 instructions1.present()
 exp.keyboard.wait()
