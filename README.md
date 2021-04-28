@@ -1,7 +1,7 @@
 # PCBS Nicolas Beauvais project
 
 I am doing my PCBS project on coding and Implicit Association task, which aim is to determine the speed of two-by-two association between items of two categories. 
-The Implicit Association Task (IAT) is supposed to provide a way to observe our "implicit" thoughts -- automatic associations that we may not be aware of and that are hard to control. This IAT measures how fast you can put words related to COVID-19 together with words like dangerous and harmless.
+The Implicit Association Task (IAT) is supposed to provide a way to observe our "implicit" thoughts -- automatic associations that we may not be aware of and that are hard to control. This IAT measures how fast you can put words related to COVID-19 together with words like dangerous and harmless. The underlying idea is that the more strongly you associate COVID-19 with a concept, the faster you can perform the task when those two concepts are paired in your response.
 The project will be realized in Python and use Expyriment.
 
 The two categories will consists in words: first category is word-types => it opposes words related to Covid-19 (Coronavirus, Flue, Shortness of breath) to words related to random other things (Sun, Ice, Window)
@@ -19,3 +19,8 @@ For both blocks and for each trial, the response time between the moment the wor
 At the end of the experiment, the data (Subject number, word presented, response key pressed*, reaction time, correct/false response) is saved in a .xpd file, which can be read for example with R. 
 *Response key labels: 115 = s, 107 = k
 
+
+
+Note: There is controversy about the IAT in the scientific literature, about its validity at external and internal levels. 
+For more details see https://en.wikipedia.org/wiki/Implicit-association_test and the criticism and controversies section.
+The author of the code does not endorse any specific position regarding the IAT paradigm, this experiment is realized as a coding project for a programming course.  
