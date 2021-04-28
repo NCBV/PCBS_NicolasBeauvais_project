@@ -22,5 +22,8 @@ At the end of the experiment, the data (Subject number, word presented, response
 
 
 Note: There is controversy about the IAT in the scientific literature, about its validity at external and internal levels. 
-For more details see https://en.wikipedia.org/wiki/Implicit-association_test and the criticism and controversies section.
+It is thought that implicit associations come from one's personal experiences and also society's views, this is also the case for COVID-19. It is important to realize that people's implicit thoughts do not always match what they say about themselves, and that this test isn't meant to diagnose anything about the participants.
 The author of the code does not endorse any specific position regarding the IAT paradigm, this experiment is realized as a coding project for a programming course.  
+For more details see https://en.wikipedia.org/wiki/Implicit-association_test and the criticism and controversies section.
+If you are interested by IATs, and perhaps taking other tests, see https://implicit.harvard.edu/implicit/iatdetails.html
+
