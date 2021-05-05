@@ -73,7 +73,7 @@ instructions2 = stimuli.TextScreen("INSTRUCTIONS",
     Press any key to start.""", position= None, heading_font = None,
     heading_size=40, heading_bold=True, text_justification=1)
     
-# Prepare the stimuli
+# Prepare the stimuli and experiment 
 trials = []
 for word in TARGETS:
     trials.append((word, stimuli.TextLine(str(word))))
@@ -81,7 +81,7 @@ for word in TARGETS:
 
 exp.add_data_variable_names(['word', 'respkey', 'RT', 'correct association'])
 
-# Start the experiment
+########## Start the experiment ##########
 control.start(skip_ready_screen=True)
 
 ### Block 1 ###
@@ -123,5 +123,6 @@ for t in trials:
     exp.data.add([t[0], key, rt, is_correct2])
     
 control.end()
+
 
 ### END ###
