@@ -73,7 +73,7 @@ instructions2 = stimuli.TextScreen("INSTRUCTIONS",
     Press any key to start.""", position= None, heading_font = None,
     heading_size=40, heading_bold=True, text_justification=1)
     
-# Prepare the stimuli and experiment 
+# Prepare the stimuli
 trials = []
 for word in TARGETS:
     trials.append((word, stimuli.TextLine(str(word))))
