@@ -20,7 +20,7 @@ MAX_RESPONSE_DELAY = 3000
 TARGETS = ["Coronavirus", "Flue", "Shortness of breath",
            "Harmful", "Danger", "Risky",
            "Sun", "Window", "Ice",
-           "Peaceful", "Safe", "Harmless"]
+           "Peaceful", "Safe", "Harmless"] * 2
 random.shuffle(TARGETS)
 
 dict_block1 = {"Coronavirus": RESPONSE_key1, "Flue":RESPONSE_key1, "Shortness of breath": RESPONSE_key1,
@@ -41,7 +41,8 @@ control.initialize(exp)
 cue = stimuli.FixCross(size=(50, 50), line_width=4)
 blankscreen = stimuli.BlankScreen()
 instructions1 = stimuli.TextScreen("INSTRUCTIONS",
-    f"""When you'll see a word, your task is to decide, as quickly as possible,
+    f"""Words will be displayed at the center of the screen.
+    When you see the word, your task is to decide, as quickly as possible,
     to which category it belongs. There will be two blocks.
     
     BLOCK 1:
@@ -54,13 +55,12 @@ instructions1 = stimuli.TextScreen("INSTRUCTIONS",
     There will be {len(TARGETS)} trials in each block.
     A Buzzer sound will be displayed if you answer wrong, 
     make sure your volume isn't too high.
-    Press the space bar to start.""", position= None, heading_font = None,
+    Press any key to start.""", position= None, heading_font = None,
     heading_size=40, heading_bold=True, text_justification=1)
 
 instructions2 = stimuli.TextScreen("INSTRUCTIONS",
-    f"""When you'll see a word, your task is to decide, as quickly as possible,
-    to which category it belongs. 
-    THE ASSOCIATED CATEGORIES ARE NOW DIFFERENT:
+    f"""Good job ! Continue like this, and try to respond as quickly as possible. 
+    WATCH OUT: THE ASSOCIATED CATEGORIES ARE NOW DIFFERENT:
     
     BLOCK 2:
     If the word is related to OTHER CATEGORIES (Sun, Window, Ice,) 
@@ -70,7 +70,7 @@ instructions2 = stimuli.TextScreen("INSTRUCTIONS",
     or to SAFETY (Harmless, Peaceful, Safe), press '{chr(RESPONSE_key2)}'
 
     There will be {len(TARGETS)} trials in the block.
-    Press the space bar to start.""", position= None, heading_font = None,
+    Press any key to start.""", position= None, heading_font = None,
     heading_size=40, heading_bold=True, text_justification=1)
     
 # Prepare the stimuli
