@@ -23,10 +23,18 @@ TARGETS = ["Coronavirus", "Flue", "Shortness of breath",
            "Peaceful", "Safe", "Harmless"] * 2
 random.shuffle(TARGETS)
 
-dict_block1 = {"Coronavirus": RESPONSE_key1, "Flue":RESPONSE_key1, "Shortness of breath": RESPONSE_key1,
-           "Harmful":RESPONSE_key1, "Danger":RESPONSE_key1, "Risky":RESPONSE_key1,
-           "Sun":RESPONSE_key2, "Window":RESPONSE_key2, "Ice":RESPONSE_key2,
-           "Peaceful":RESPONSE_key2, "Safe":RESPONSE_key2, "Harmless":RESPONSE_key2}
+dict_block1 = {"Coronavirus": 		RESPONSE_key1, 
+			"Flue":			 		RESPONSE_key1, 
+			"Shortness of breath": RESPONSE_key1,
+           "Harmful":				RESPONSE_key1, 
+           "Danger":				RESPONSE_key1, 
+           "Risky":					RESPONSE_key1,
+           "Sun":		RESPONSE_key2, 
+           "Window":	RESPONSE_key2, 
+           "Ice":		RESPONSE_key2,
+           "Peaceful":  RESPONSE_key2, 
+           "Safe":		RESPONSE_key2, 
+           "Harmless":	RESPONSE_key2}
 
 dict_block2 = {"Coronavirus": RESPONSE_key2, "Flue":RESPONSE_key2, "Shortness of breath": RESPONSE_key2,
            "Harmful":RESPONSE_key1, "Danger":RESPONSE_key1, "Risky":RESPONSE_key1,
@@ -72,7 +80,7 @@ instructions2 = stimuli.TextScreen("INSTRUCTIONS",
     There will be {len(TARGETS)} trials in the block.
     Press any key to start.""", position= None, heading_font = None,
     heading_size=40, heading_bold=True, text_justification=1)
-    
+   
 # Prepare the stimuli
 trials = []
 for word in TARGETS:
@@ -81,8 +89,29 @@ for word in TARGETS:
 
 exp.add_data_variable_names(['word', 'respkey', 'RT', 'correct association'])
 
+Blocks = [(instructions1, dict_block1), 
+		  (instructions2, dict_block2)]
+
 ########## Start the experiment ##########
 control.start(skip_ready_screen=True)
+for instruct, mapping in Blocks:
+	instruct.present()
+	exp.keyboard.wait()
+
+	for t in trials:
+    	blankscreen.present()
+    	exp.clock.wait(1000)
+    	cue.present()
+   		exp.clock.wait(500)
+    	t[1].present()
+    	key, rt = exp.keyboard.wait([RESPONSE_key1, RESPONSE_key2],duration=MAX_RESPONSE_DELAY)
+    	is_correct = dict_block1[t[0]] == key
+    	if dict_block1[t[0]] != key:
+        	negative_feedback = stimuli.Audio(BUZZER)
+        	negative_feedback.play()
+        	print('Wrong answer')
+    	exp.data.add([t[0],  key, rt, is_correct])
+
 
 ### Block 1 ###
 instructions1.present()
