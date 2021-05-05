@@ -24,22 +24,30 @@ TARGETS = ["Coronavirus", "Flue", "Shortness of breath",
 random.shuffle(TARGETS)
 
 dict_block1 = {"Coronavirus": 		RESPONSE_key1, 
-			"Flue":			 		RESPONSE_key1, 
-			"Shortness of breath": RESPONSE_key1,
-           "Harmful":				RESPONSE_key1, 
-           "Danger":				RESPONSE_key1, 
-           "Risky":					RESPONSE_key1,
-           "Sun":		RESPONSE_key2, 
-           "Window":	RESPONSE_key2, 
-           "Ice":		RESPONSE_key2,
-           "Peaceful":  RESPONSE_key2, 
-           "Safe":		RESPONSE_key2, 
-           "Harmless":	RESPONSE_key2}
+               "Flue":			 	RESPONSE_key1, 
+               "Shortness of breath":RESPONSE_key1,
+               "Harmful":			RESPONSE_key1, 
+               "Danger":			RESPONSE_key1, 
+               "Risky":				RESPONSE_key1,
+               "Sun":		RESPONSE_key2, 
+               "Window":	RESPONSE_key2, 
+               "Ice":		RESPONSE_key2,
+               "Peaceful":  RESPONSE_key2, 
+               "Safe":		RESPONSE_key2, 
+               "Harmless":	RESPONSE_key2}
 
-dict_block2 = {"Coronavirus": RESPONSE_key2, "Flue":RESPONSE_key2, "Shortness of breath": RESPONSE_key2,
-           "Harmful":RESPONSE_key1, "Danger":RESPONSE_key1, "Risky":RESPONSE_key1,
-           "Sun":RESPONSE_key1 ,"Window":RESPONSE_key1, "Ice":RESPONSE_key1,
-           "Peaceful":RESPONSE_key2, "Safe":RESPONSE_key2, "Harmless":RESPONSE_key2}
+dict_block2 = {"Coronavirus":       RESPONSE_key2, 
+               "Flue":              RESPONSE_key2, 
+               "Shortness of breath": RESPONSE_key2,
+           "Harmful":RESPONSE_key1, 
+           "Danger":RESPONSE_key1, 
+           "Risky": RESPONSE_key1,
+           "Sun":   RESPONSE_key1 ,
+           "Window":RESPONSE_key1, 
+           "Ice":   RESPONSE_key1,
+           "Peaceful":          RESPONSE_key2, 
+           "Safe":              RESPONSE_key2, 
+           "Harmless":          RESPONSE_key2}
 
 
 exp = design.Experiment(name="Implicit Association Task", text_size=20)
