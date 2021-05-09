@@ -103,9 +103,9 @@ Blocks = [(instructions1, dict_block1),
 ########## Start the experiment ##########
 control.start(skip_ready_screen=True)
 for instruct, mapping in Blocks:
-	instruct.present()
+	instruct.present(), exp.data.add('__________Block results:__________')
 	exp.keyboard.wait()
-
+   
 	for t in trials:
             blankscreen.present()
             exp.clock.wait(1000)
@@ -120,46 +120,5 @@ for instruct, mapping in Blocks:
                 print('Wrong answer')
             exp.data.add([t[0],  key, rt, is_correct])
 control.end()
-
-### Block 1 ###
-# instructions1.present()
-# exp.keyboard.wait()
-
-# for t in trials:
-#     blankscreen.present()
-#     exp.clock.wait(1000)
-#     cue.present()
-#     exp.clock.wait(500)
-#     t[1].present()
-#     key, rt = exp.keyboard.wait([RESPONSE_key1, RESPONSE_key2],duration=MAX_RESPONSE_DELAY)
-#     is_correct = dict_block1[t[0]] == key
-#     if dict_block1[t[0]] != key:
-#         negative_feedback = stimuli.Audio(BUZZER)
-#         negative_feedback.play()
-#         print('Wrong answer')
-#     exp.data.add([t[0],  key, rt, is_correct])
-
-# ### Block 2 ###
-# print('Block 2:')
-# exp.data.add('Block2')
-# instructions2.present() 
-# exp.keyboard.wait()
-
-# for t in trials:
-#     blankscreen.present()
-#     exp.clock.wait(1000)
-#     cue.present()
-#     exp.clock.wait(500)
-#     t[1].present()
-#     key, rt = exp.keyboard.wait([RESPONSE_key1, RESPONSE_key2], duration=MAX_RESPONSE_DELAY)
-#     is_correct2 = dict_block2[t[0]] == key
-#     if dict_block2[t[0]] != key:
-#         negative_feedback = stimuli.Audio(BUZZER)
-#         negative_feedback.play()
-#         print('Wrong answer')
-#     exp.data.add([t[0], key, rt, is_correct2])
-    
-
-
 
 ### END ###
