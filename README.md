@@ -1,8 +1,8 @@
 # PCBS Nicolas Beauvais project
 
-I am doing my PCBS project on coding and Implicit Association task, which aim is to determine the speed of two-by-two association between items of two categories. 
+My PCBS project is the coding of an Implicit Association task, which aim is to determine the speed of two-by-two association between items of two categories. 
 The Implicit Association Task (IAT) is supposed to provide a way to observe our "implicit" thoughts -- automatic associations that we may not be aware of and that are hard to control. This IAT measures how fast you can put words related to COVID-19 together with words like dangerous and harmless. The underlying idea is that the more strongly you associate COVID-19 with a concept, the faster you can perform the task when those two concepts are paired in your response.
-The project will be realized in Python and use Expyriment.
+The project is realized in Python and uses Expyriment.
 
 The two categories will consists in words: first category is word-types => it opposes words related to Covid-19 (Coronavirus, Flue, Shortness of breath) to words related to random other things (Sun, Ice, Window)
 The second category relates to risk => it will oppose words related to Harm (Harmful, Danger, Risky) to words related to Safety (Harmless, Peaceful, Safe).
