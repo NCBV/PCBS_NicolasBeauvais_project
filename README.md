@@ -17,10 +17,12 @@ If the participant missassociates a word (e.g. presses 's' while the correct ans
 
 For both blocks and for each trial, the response time between the moment the word is presented and the pressing of the key ('s' or 'k') is recorded. 
 At the end of the experiment, the data (Subject number, word presented, response key pressed*, reaction time, correct/false response) is saved in a .xpd file, which can be read for example with R. 
+
 *Response key labels: 115 = s, 107 = k
 
 # How to run the experiment:
 Click on Code > Download ZIP and extract it on your computer. Then open a terminal, change the directory to where you saved the files, then type in: python Association-task-code_main.py
+
 Then follow the instructions untill the end of the experiment. 
 
 # Note: 
