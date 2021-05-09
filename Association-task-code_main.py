@@ -20,7 +20,7 @@ MAX_RESPONSE_DELAY = 3000
 TARGETS = ["Coronavirus", "Flue", "Shortness of breath",
            "Harmful", "Danger", "Risky",
            "Sun", "Window", "Ice",
-           "Peaceful", "Safe", "Harmless"] * 2
+           "Peaceful", "Safe", "Harmless"] 
 random.shuffle(TARGETS)
 
 dict_block1 = {"Coronavirus": 		RESPONSE_key1, 
@@ -50,7 +50,7 @@ dict_block2 = {"Coronavirus":       RESPONSE_key2,
            "Harmless":          RESPONSE_key2}
 
 
-exp = design.Experiment(name="Implicit Association Task", text_size=20)
+exp = design.Experiment(name="Implicit Association Task", text_size=30)
 
 control.initialize(exp)
 
@@ -107,59 +107,59 @@ for instruct, mapping in Blocks:
 	exp.keyboard.wait()
 
 	for t in trials:
-    	blankscreen.present()
-    	exp.clock.wait(1000)
-    	cue.present()
-   		exp.clock.wait(500)
-    	t[1].present()
-    	key, rt = exp.keyboard.wait([RESPONSE_key1, RESPONSE_key2],duration=MAX_RESPONSE_DELAY)
-    	is_correct = dict_block1[t[0]] == key
-    	if dict_block1[t[0]] != key:
-        	negative_feedback = stimuli.Audio(BUZZER)
-        	negative_feedback.play()
-        	print('Wrong answer')
-    	exp.data.add([t[0],  key, rt, is_correct])
-
+            blankscreen.present()
+            exp.clock.wait(1000)
+            cue.present()
+            exp.clock.wait(500)
+            t[1].present()
+            key, rt = exp.keyboard.wait([RESPONSE_key1, RESPONSE_key2],duration=MAX_RESPONSE_DELAY)
+            is_correct = mapping[t[0]] == key
+            if mapping[t[0]] != key:
+                negative_feedback = stimuli.Audio(BUZZER)
+                negative_feedback.play()
+                print('Wrong answer')
+            exp.data.add([t[0],  key, rt, is_correct])
+control.end()
 
 ### Block 1 ###
-instructions1.present()
-exp.keyboard.wait()
+# instructions1.present()
+# exp.keyboard.wait()
 
-for t in trials:
-    blankscreen.present()
-    exp.clock.wait(1000)
-    cue.present()
-    exp.clock.wait(500)
-    t[1].present()
-    key, rt = exp.keyboard.wait([RESPONSE_key1, RESPONSE_key2],duration=MAX_RESPONSE_DELAY)
-    is_correct = dict_block1[t[0]] == key
-    if dict_block1[t[0]] != key:
-        negative_feedback = stimuli.Audio(BUZZER)
-        negative_feedback.play()
-        print('Wrong answer')
-    exp.data.add([t[0],  key, rt, is_correct])
+# for t in trials:
+#     blankscreen.present()
+#     exp.clock.wait(1000)
+#     cue.present()
+#     exp.clock.wait(500)
+#     t[1].present()
+#     key, rt = exp.keyboard.wait([RESPONSE_key1, RESPONSE_key2],duration=MAX_RESPONSE_DELAY)
+#     is_correct = dict_block1[t[0]] == key
+#     if dict_block1[t[0]] != key:
+#         negative_feedback = stimuli.Audio(BUZZER)
+#         negative_feedback.play()
+#         print('Wrong answer')
+#     exp.data.add([t[0],  key, rt, is_correct])
 
-### Block 2 ###
-print('Block 2:')
-exp.data.add('Block2')
-instructions2.present() 
-exp.keyboard.wait()
+# ### Block 2 ###
+# print('Block 2:')
+# exp.data.add('Block2')
+# instructions2.present() 
+# exp.keyboard.wait()
 
-for t in trials:
-    blankscreen.present()
-    exp.clock.wait(1000)
-    cue.present()
-    exp.clock.wait(500)
-    t[1].present()
-    key, rt = exp.keyboard.wait([RESPONSE_key1, RESPONSE_key2], duration=MAX_RESPONSE_DELAY)
-    is_correct2 = dict_block2[t[0]] == key
-    if dict_block2[t[0]] != key:
-        negative_feedback = stimuli.Audio(BUZZER)
-        negative_feedback.play()
-        print('Wrong answer')
-    exp.data.add([t[0], key, rt, is_correct2])
+# for t in trials:
+#     blankscreen.present()
+#     exp.clock.wait(1000)
+#     cue.present()
+#     exp.clock.wait(500)
+#     t[1].present()
+#     key, rt = exp.keyboard.wait([RESPONSE_key1, RESPONSE_key2], duration=MAX_RESPONSE_DELAY)
+#     is_correct2 = dict_block2[t[0]] == key
+#     if dict_block2[t[0]] != key:
+#         negative_feedback = stimuli.Audio(BUZZER)
+#         negative_feedback.play()
+#         print('Wrong answer')
+#     exp.data.add([t[0], key, rt, is_correct2])
     
-control.end()
+
 
 
 ### END ###
