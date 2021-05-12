@@ -22,7 +22,7 @@ TARGETS = ["Coronavirus", "Flue", "Shortness of breath",
            "Peaceful", "Safe", "Harmless"] 
 random.shuffle(TARGETS)
 
-response_to_stim_block1 = {"Coronavirus": 	RESPONSE_key1, 
+response_to_stim_block1 = {"Coronavirus": RESPONSE_key1, 
                "Flue":			 RESPONSE_key1, 
                "Shortness of breath":RESPONSE_key1,
                "Harmful":		RESPONSE_key1, 
