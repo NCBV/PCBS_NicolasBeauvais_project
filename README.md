@@ -15,7 +15,7 @@ The second category relates to risk => it will oppose words related to *Harm* (H
 If the participant missassociates a word (e.g. presses 's' while the correct answer was 'k'), an **audio buzzer** is played, as a negative feedback.
 
 For both blocks and for each trial, the **response time** between the moment the word is presented and the pressing of the key ('s' or 'k') is recorded.  
-At the end of the experiment, the data (Subject number, word presented, response key pressed* , reaction time, correct/false response) is saved in a .xpd file, which can be read for example with R.  
+At the end of the experiment, the **data** (Subject number, word presented, response key pressed* , reaction time, correct/false response) is saved in a .xpd file, which can be read for example with R.  
 *Response key labels: 115 = s, 107 = k
   
 
