@@ -31,3 +31,7 @@ The author of the code does not endorse any specific position regarding the IAT 
 For more details see https://en.wikipedia.org/wiki/Implicit-association_test and the criticism and controversies section.
 If you are interested by IATs, and perhaps taking other tests, see https://implicit.harvard.edu/implicit/iatdetails.html
 
+  
+## ToDo:
+In order to complete the experimental paradigm, with more time (and perhaps skills,given that I had no previous experience in programming) I would have liked to code something to analyse the data, in order to be able to tell whether trials where Covid-19 is 'associated' to Harm (i.e. has same response key) result in faster response times than when Covid-19 is 'associated' to Safety.  
+Another point is that the order of the blocks might influence the response times, so ideally the order should be balanced across participants for a better validity of the experiment. 
