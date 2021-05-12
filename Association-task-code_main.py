@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Created on Wed Apr  7 09:55:21 2021
 
@@ -23,12 +22,12 @@ TARGETS = ["Coronavirus", "Flue", "Shortness of breath",
            "Peaceful", "Safe", "Harmless"] 
 random.shuffle(TARGETS)
 
-dict_block1 = {"Coronavirus": 		RESPONSE_key1, 
-               "Flue":			 	RESPONSE_key1, 
+response_to_stim_block1 = {"Coronavirus": 		RESPONSE_key1, 
+               "Flue":			 RESPONSE_key1, 
                "Shortness of breath":RESPONSE_key1,
-               "Harmful":			RESPONSE_key1, 
-               "Danger":			RESPONSE_key1, 
-               "Risky":				RESPONSE_key1,
+               "Harmful":		RESPONSE_key1, 
+               "Danger":		RESPONSE_key1, 
+               "Risky":			RESPONSE_key1,
                "Sun":		RESPONSE_key2, 
                "Window":	RESPONSE_key2, 
                "Ice":		RESPONSE_key2,
@@ -36,7 +35,7 @@ dict_block1 = {"Coronavirus": 		RESPONSE_key1,
                "Safe":		RESPONSE_key2, 
                "Harmless":	RESPONSE_key2}
 
-dict_block2 = {"Coronavirus":       RESPONSE_key2, 
+response_to_stim_block2 = {"Coronavirus":       RESPONSE_key2, 
                "Flue":              RESPONSE_key2, 
                "Shortness of breath": RESPONSE_key2,
            "Harmful":RESPONSE_key1, 
@@ -97,8 +96,8 @@ for word in TARGETS:
 
 exp.add_data_variable_names(['word', 'respkey', 'RT', 'correct association'])
 
-Blocks = [(instructions1, dict_block1), 
-		  (instructions2, dict_block2)]
+Blocks = [(instructions1, response_to_stim_block1), 
+		  (instructions2, response_to_stim_block2)]
 
 ########## Start the experiment ##########
 control.start(skip_ready_screen=True)
